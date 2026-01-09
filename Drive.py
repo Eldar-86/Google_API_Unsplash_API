@@ -16,7 +16,7 @@ def test_create_order_folder():                                             #Cre
     service = build("drive", "v3", credentials=creds)
     file_metadata = {
         "name": f"Order: {order_list[0]}",
-        "parents": ["1PURwA49JE9IpNmlC2D3JFmDty1pY8z2-"],
+        "parents": ["set_id_of_drive_here"],                    ###You can use the function to create the folder, and it will return the folder id.
         "mimeType": "application/vnd.google-apps.folder",
     }
 
