@@ -1,7 +1,10 @@
 from googleapiclient.discovery import build
-from googleapiclient.errors import HttpError
+from Unsplash_image_get import test_get_images
 from Spreadsheet import test_order_values
 from Authenticate import authenticate
+import requests
+from io import BytesIO
+from googleapiclient.http import MediaIoBaseUpload
 
 ############################################################################################################################################
 #Drive functions
@@ -13,7 +16,7 @@ def test_create_order_folder():                                             #Cre
     service = build("drive", "v3", credentials=creds)
     file_metadata = {
         "name": f"Order: {order_list[0]}",
-        "parents": ["folder_id"],
+        "parents": ["1PURwA49JE9IpNmlC2D3JFmDty1pY8z2-"],
         "mimeType": "application/vnd.google-apps.folder",
     }
 
@@ -23,16 +26,23 @@ def test_create_order_folder():                                             #Cre
 
 
 def test_uploading_photos():                                                #Uploads photos from ___API to the order# folder
-    #           If ___API handles multiple photos, it can return the amount of photos, which can then be used for naming by numbering -- check comment below
-
     creds, _, drive_service = authenticate()
     folder_id = test_create_order_folder()
 
+    list_of_photo_links_unsplash, query = test_get_images()
+    number_of_remaining_photos = len(list_of_photo_links_unsplash)
+
     service = build("drive", "v3", credentials=creds)
 
-    file_metadata = {"name": "photo.jpg", "parents": [folder_id]}               #[f"photo_{num+1}.jpg" for num in range(number_of_photos)]
-    media = MediaFileUpload("download.jpeg", mimetype="image/jpeg", resumable=True)
+    for num, link in enumerate(list_of_photo_links_unsplash):
+        url = link
+        response = requests.get(url)
+        file_data = BytesIO(response.content)
+        media = MediaIoBaseUpload(file_data, mimetype="image/jpeg", resumable=True)
 
-    file = (service.files().create(body=file_metadata, media_body=media, fields="id").execute())
-    print(f'File ID: "{file.get("id")}".')
-    return file.get("id")
+        file_metadata = {"name": f"photo{num+1}.jpg", "parents": [folder_id]}
+        file = service.files().create(body=file_metadata, media_body=media, fields="id").execute()
+        print(f"{num+1} out of {number_of_remaining_photos} photo(s) completed...")
+#        print(file.get("id")) you can create a log.txt file and store file ids per order
+
+############################################################################################################################################
