@@ -16,7 +16,7 @@ def test_get_images():                                                  #Returns
                 "page": 1,
                 "order_by": "relevant",
                 "content_filter": "high",
-                "client_id": "7d950RHYwlZjTj5UD7gMVUhEHjqODLzpQXkv1eBkcCE"})
+                "client_id": "your_client_id_here"})            ###You will first need to create an app on Unsplash
     content = response.json()
 
     photo_links = []
