@@ -1,6 +1,6 @@
 # GoogleAPI; spreadsheet/drive
 
-It is a simple script that takes order values from Google spreadsheet, feeds it into Unsplash to lookup photos, creates foder(s) and stores the photos from Unsplash to the Google Drive.
+It is a simple script that takes order values from Google spreadsheet, feeds it into Unsplash to lookup photos, creates folder(s) and stores the photos from Unsplash to the Google Drive.
 
 ## Creating a project on Google
 
