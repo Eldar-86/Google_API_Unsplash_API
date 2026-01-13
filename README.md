@@ -17,7 +17,7 @@
 
 - Authenticate.py to authenticate and create a token for specific email address with allowed access.
 
-- Spreadsheet.py is accessing and updating the order spreadsheet, and it contains 5 functions: **1.** to check the status of order and return row number of the first incomplete order **2.** to update the status of the order after completion **3.** to collect and return values of incomplete orders (order#, year, make, model, trim as a list) for further process. **4.** to return number of runs by comparing the number of existing orders with number of completed orders. This file still needs handling if new order is added in a middle of spreadsheet, without any orders in between; perhaps update ***test_check_status()*** func to check if order # row True when Status row empty.
+- Spreadsheet.py is accessing and updating the order spreadsheet, and it contains 5 functions: **1.** to check the status of order and return row number of the first incomplete order **2.** to update the status of the order after completion **3.** to collect and return values of incomplete orders (order#, year, make, model, trim as a list) for further process. **4.** to return number of runs by comparing the number of existing orders with number of completed orders. 
 
 - Drive.py is to manage folders and files on the drive. There are two functions: **1** creates folder named after the pending order number and returns the folder id **2** uploads photos from UnsplashAPI to the order# folder via BytesIO so to not take unnecessary memory or space
 
@@ -29,6 +29,6 @@
 
 #### Required updates
 
-- the script needs to be updated so when an order is entered i the middle of a spreadsheet, the counter does not add the number off cells between that line and last completed line in test_number_of_runs()
+- The script still needs handling if new order is added somewhere in the middle of a spreadsheet, without any orders in between; perhaps update ***test_check_status()*** func to check if order # row True when Status row False. Also, this perhaps can be done by updating test_number_of_runs()...
 
-- the script needs to be updated in case folder 'Photos' is deleted. It needs to check if folder exists, and create it if not.
+- The script needs to be updated in case folder 'Photos' does not exist. It needs to check if folder exists, and then create it if not.
