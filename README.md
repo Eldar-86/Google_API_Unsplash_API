@@ -1,7 +1,5 @@
 # GoogleAPI; spreadsheet/drive
 
-It is a simple script that takes order values from Google spreadsheet, feeds it into Unsplash to lookup photos, creates folder(s) and stores the photos from Unsplash to the Google Drive.
-
 ## Creating a project on Google
 
 - Log into Google cloud console with the account where the project is to be, and creat the project.
@@ -26,3 +24,11 @@ It is a simple script that takes order values from Google spreadsheet, feeds it 
 - Main.py is the main function to run the script and handle errors. It shows which order is in process and how many orders has been processed when there is no more orders in the spreadsheet
 
 - Unsplash_image_get.py has one fucntion using the requests lib. It takes the order info, filters it and returns a list of URLs with regular size photos. It also returns query -- values picked up from the order.
+
+
+
+#### Required updates
+
+- the script needs to be updated so when an order is entered i the middle of a spreadsheet, the counter does not add the number off cells between that line and last completed line in test_number_of_runs()
+
+- the script needs to be updated in case folder 'Photos' is deleted. It needs to check if folder exists, and create it if not.
