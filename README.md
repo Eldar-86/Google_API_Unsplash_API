@@ -32,3 +32,5 @@
 - The script still needs handling if new order is added somewhere in the middle of a spreadsheet, without any orders in between; perhaps update ***test_check_status()*** func to check if order # row True when Status row False. Also, this perhaps can be done by updating test_number_of_runs()...
 
 - The script needs to be updated in case folder 'Photos' does not exist. It needs to check if folder exists, and then create it if not.
+
+- The script needs handling External (API / HTTP) errors
