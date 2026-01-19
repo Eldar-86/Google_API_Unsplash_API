@@ -34,3 +34,5 @@
 - The script needs to be updated in case folder 'Photos' does not exist. It needs to check if folder exists, and then create it if not.
 
 - The script needs handling external (API / HTTP) errors
+
+- Use time + sched to set the script up as a scheduled task.
